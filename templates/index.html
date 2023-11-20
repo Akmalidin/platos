@@ -1,0 +1,550 @@
+{% extends 'include/homepage.html' %}
+{% load static %}
+{% block content %}
+	<!-- Container -->
+	<div id="container">
+
+		<!-- home-section 
+			================================================== -->
+		<section id="home-section" class="slider1">
+			
+			<!--
+			#################################
+				- THEMEPUNCH BANNER -
+			#################################
+			-->
+			<div class="tp-banner-container">
+				<div class="tp-banner" >
+					<ul>	<!-- SLIDE  -->
+						{% for slider in slider %}
+						<li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on"  data-title="Intro Slide">
+							<!-- MAIN IMAGE -->
+							<img src="{{ slider.image.url }}"  alt="slidebg1" data-lazyload="{{slider.image.url}}" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+							<!-- LAYERS -->
+
+							<!-- LAYER NR. 1 -->
+							<div class="tp-caption finewide_medium_white lft tp-resizeme rs-parallaxlevel-0"
+								data-x="center"
+								data-y="240" 
+								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+								data-speed="500"
+								data-start="1200"
+								data-easing="Power3.easeInOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.05"
+								data-endelementdelay="0.05"
+								style="z-index: 8; white-space: nowrap;">
+								{{slider.title}}
+							</div>
+
+							<!-- LAYER NR. 2 -->
+							<div class="tp-caption small_text lfb tp-resizeme rs-parallaxlevel-0"
+								data-x="center"
+								data-y="475" 
+								data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+								data-speed="500"
+								data-start="1800"
+								data-easing="Power3.easeInOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.05"
+								data-endelementdelay="0.1"
+								style="z-index: 7; white-space: nowrap;">
+								{{slider.description}}
+							</div>
+
+						</li>
+						{% endfor %}
+					</ul>
+					<div class="tp-bannertimer"></div>
+				</div>
+			</div>
+		</section>
+		<!-- End home section -->
+		<!-- Header
+		    ================================================== -->
+		{% include 'include/header.html' %}
+		<!-- End Header -->
+
+		<!-- about-section 
+			================================================== -->
+		<section id="about-section">
+			<div class="container">
+				<div class="title-section">
+					<h1>{{ history.title }}</h1>
+					<p>{{ history.description }}</p>
+				</div>
+				<div class="about-box">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="image-holder">
+								<img src="{{ history.image.url }}" alt="">
+								<img class="snd-img" src="{{ history.sec_image.url }}" alt="">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="rest-about-box">
+								<h1>{{history.suptitle}}</h1>
+								<p>{{history.second_desc}} </p>
+								<img src="{{history.propic.url}}" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="about-box left-content">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="rest-about-box">
+								<h1>{{ restaurant.title }}</h1>
+								<p>{{restaurant.suptitle}}</p>
+								<p><span>{{restaurant.desc}}</span></p>
+								<div class="about-time">
+									<div class="row">
+										{% for days in days %}
+										<div class="col-md-5 col-sm-6">
+											<p>{{days.days}}</p>
+											<span>{{days.time}}</span>
+										</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="image-holder">
+								<img src="{{restaurant.image.url}}" alt="">
+								<img class="snd-img" src="{{restaurant.sec_image.url}}" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End about section -->
+
+		<!-- special-section 
+			================================================== -->
+		<section id="special-section">
+			<div class="container">
+				<div class="title-section white">
+					<h1>{{special.title}}</h1>
+					<p>{{special.suptitle}}</p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="today-special-box">
+					<div class="food-line">
+						{% for special_foods in special_foods %}
+						<div class="food-post">
+							<div class="inner-food-post">
+								<div class="food-gal">
+									<img src="{{special_foods.image.url}}" alt="">
+								</div>
+								<div class="food-content">
+									<div class="food-content-box">
+										<h2><a href="#">{{special_foods.block_title}}</a></h2>
+										<p>{{special_foods.block_suptitle}} </p>
+										<span class="price">${{special_foods.block_price}}</span>
+										<span class="category">{{special_foods.block_time}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End special section -->
+
+		<!--menu-section 
+			================================================== -->
+		<section id="menu-section">
+			<div class="container">
+				<div class="title-section">
+					<h1>{{menu.title}}</h1>
+					<p>{{menu.suptitle}}</p>
+				</div>
+				<div class="menu-box">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#lunch" aria-controls="lunch" role="tab" data-toggle="tab">Ланч</a></li>
+						<li role="presentation"><a href="#dinner" aria-controls="dinner" role="tab" data-toggle="tab">Ужин</a></li>
+						<li role="presentation"><a href="#desserts" aria-controls="desserts" role="tab" data-toggle="tab">Десерты</a></li>
+						<li role="presentation"><a href="#drinks" aria-controls="drinks" role="tab" data-toggle="tab">Напитки</a></li>
+					</ul>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="lunch">
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="menu-list-items" style="
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;">
+										{% for lunch in lunch %}
+										<li>
+											<div class="list-image">
+												<img src="{{lunch.img.url}}" alt="">
+												{% if lunch.new == True %}
+												<span>new</span>
+												{% endif %}
+											</div>
+											<div class="list-content">
+												<h2>{{lunch.title}} <span>${{lunch.price}}</span></h2>
+												<p>{{lunch.suptitle}}</p>
+											</div>
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="dinner">
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="menu-list-items" style="
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;">
+										{% for dinner in dinner %}
+										<li>
+											<div class="list-image">
+												<img src="{{dinner.img.url}}" alt="">
+												{% if dinner.new == True %}
+												<span>new</span>
+												{% endif %}
+											</div>
+											<div class="list-content">
+												<h2>{{dinner.title}} <span>${{dinner.price}}</span></h2>
+												<p>{{dinner.suptitle}}</p>
+											</div>
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="desserts">
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="menu-list-items" style="
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;">
+										{% for dessert in dessert %}
+										<li>
+											<div class="list-image">
+												<img src="{{dessert.img.url}}" alt="">
+												{% if dessert.new == True %}
+												<span>new</span>
+												{% endif %}
+											</div>
+											<div class="list-content">
+												<h2>{{dessert.title}} <span>${{dessert.price}}</span></h2>
+												<p>{{dessert.suptitle}}</p>
+											</div>
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="drinks">
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="menu-list-items" style="
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;">
+										{% for drinks in drinks %}
+										<li>
+											<div class="list-image">
+												<img src="{{drinks.img.url}}" alt="">
+												{% if drinks.new == True %}
+												<span>new</span>
+												{% endif %}
+											</div>
+											<div class="list-content">
+												<h2>{{drinks.title}} <span>${{drinks.price}}</span></h2>
+												<p>{{drinks.suptitle}}</p>
+											</div>
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- End menu-section -->
+
+		<!-- reservation-section
+			================================================== -->
+		<section id="reservation-section">
+			<div class="container">
+				<div class="reservation-box">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="title-section white">
+								<h1>{{reservetion.title}}</h1>
+								<p>{{reservetion.suptitle}}</p>
+							</div>
+							<form class="reservation-form" method='POST'>
+								{% comment %} {% csrf_token %} {% endcomment %}
+								<label for="name-guest">Имя:</label>
+								<input type="text" name="name-guest" id="name-guest" placeholder="Name"/>
+								<label for="date-guest">Дата:</label>
+								<input type="text" name="date-guest" id="date-guest" placeholder="mm/dd/yyyy"/>
+								<div class="row">
+									<div class="col-md-6">
+										<label for="time-guest">Время:</label>
+										<input type="text" name="time-guest" id="time-guest" placeholder="7:00 pm"/>
+									</div>
+									<div class="col-md-6">
+										<label for="pers-guest">Людей:</label>
+										<input type="text" name="pers-guest" id="pers-guest" placeholder="2 people"/>
+									</div>
+								</div>
+								<input type="submit"value="Найти стуля" />
+								<div id="msg-rsv"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End reservation-section -->
+
+		<!-- team-section
+			================================================== -->
+		<section id="team-section">
+			<div class="container">
+				<div class="title-section">
+					<h1>{{command.title}}</h1>
+					<p>{{command.suptitle}}</p>
+				</div>
+				<div class="team-box owl-wrapper">
+					<div class="owl-carousel" data-num="4">
+						{% for commands in commands %}
+						<div class="item team-post">
+							<div class="inner-team-post">
+								<div class="team-gal">
+									<img src="{{commands.img.url}}" alt="">
+								</div>
+								<h2>{{commands.name}}</h2>
+								<span>{{commands.special}}</span>
+								<p>{{commands.desc}} </p>
+								<ul class="social-icons">
+									<li><a class="facebook" href="{{commands.facebook}}"><i class="fa fa-facebook"></i></a></li>
+									<li><a class="twitter" href="{{commands.twitter}}"><i class="fa fa-twitter"></i></a></li>
+									<li><a class="google" href="{{commands.google}}"><i class="fa fa-google-plus"></i></a></li>
+									<li><a class="instagram" href="{{commands.instagram}}"><i class="fa fa-instagram"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End team-section -->
+
+		<!-- statistic-section 
+			================================================== -->
+		<section class="statistic-section">
+			<div class="container">
+				
+				<div class="statistic-box">
+					<div class="row">
+						{% for opit in opit %}
+						<div class="col-md-3 col-sm-6">
+							<div class="statistic-post">
+								<p><span class="timer" data-from="0" data-to="{{opit.number}}"></span></p>
+								<h2>{{opit.title}}</h2>
+								<p>{{opit.desc}}</p>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End statistic section -->
+
+		<!-- gallery-section 
+			================================================== -->
+		<section id="gallery-section">
+			<div class="container">
+				<div class="title-section">
+					<h1>Our Gallery</h1>
+					<p>Morbi in sem quis dui placerat ornare. </p>
+				</div>
+				<ul class="filter">
+					<li><a class="active" href="#" data-filter="*">All</a></li>
+					<li><a href="#" data-filter=".desert">Desserts</a></li>
+					<li><a href="#" data-filter=".rest">Restaurant</a></li>
+					<li><a href="#" data-filter=".dinner">Dinner</a></li>
+				</ul>
+			</div>
+			<div class="gallery-box iso-call">
+				<div class="gal-project desert rest">
+					<img src="{% static 'upload/g1.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dessert, Restaurant</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project dinner">
+					<img src="{% static 'upload/g2.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dinner</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project rest">
+					<img src="{% static 'upload/g3.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Restaurant</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project rest">
+					<img src="{% static 'upload/g4.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Restaurant</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project dinner">
+					<img src="{% static 'upload/g5.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dinner</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project dinner">
+					<img src="{% static 'upload/g6.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dinner</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project dinner">
+					<img src="{% static 'upload/g7.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dinner</span>
+						</div>
+					</div>
+				</div>
+				<div class="gal-project desert">
+					<img src="{% static 'upload/g8.jpg' %}" alt="">
+					<div class="hover-gal">
+						<div class="inner-gal">
+							<h2>Aliquam tincidunt</h2>
+							<span>Dessert</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End gallery section -->
+
+		<!-- Conctact section 
+			================================================== -->
+		<section id="contact-section">
+
+			<div class="upper-part">
+				<div class="container">
+					<div class="title-section white">
+						<h1>{{settings.title}}</h1>
+						<p>{{settings.suptitle}}.</p>
+					</div>
+					<div class="widget-area">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="info-widget">
+									<h1>
+										Контакты
+									</h1>
+									<p>{{settings.address}} </p>
+									<p>
+										<span>{{settings.phone}}</span>
+									</p>
+									<p>{{settings.email}}</p>
+									<ul class="social-icons">
+										<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a class="dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+										<li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+										<li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="info-widget">
+									<h1>
+										Радочие дни
+									</h1>
+									{% for days in days%}
+									<p>
+										<span>{{days.days}}</span>
+										<span class="time">{{days.time}}</span>
+									</p>
+									{% endfor%}
+									<p>Ресторан закрыт в воскресенье!</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="info-widget">
+									<h1>
+										Отправить!
+									</h1>
+
+									<form id="contact-form">
+										<input name="name" id="name" type="text" placeholder="Name*">
+										<input name="mail" id="mail" type="text" placeholder="Email*">
+										<textarea name="comment" id="comment" placeholder="*Message*"></textarea>
+										<div class="submit-area">
+											<input type="submit" id="submit_contact" value="Send Message">
+											<div id="msg" class="message"></div>								
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="map"></div>
+		</section>
+		<!-- End contact section -->
+
+		<!-- footer 
+			================================================== -->
+		{% include 'include/footer.html' %}
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+	{% endblock %}

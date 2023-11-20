@@ -1,0 +1,57 @@
+{% extends 'include/homepage.html' %}
+{% load static %}
+{% block content %}
+	<!-- Container -->
+	<div id="container">
+
+		<!-- Header
+		    ================================================== -->
+		{% include 'include/header.html' %}
+		<!-- End Header -->
+
+		<!-- blog-section 
+			================================================== -->
+		<section class="blog-section">
+			<div class="container">
+				<div class="blog-box">
+					{% for blog in blog %}
+					<div class="blog-post">
+						<img src="{{blog.img.url}}" alt="">
+						<h2><a href="single-post.html">{{blog.title}}.</a></h2>
+						<ul class="post-meta">
+							<li>
+								<a href="#">{{blog.data}}</a>
+							</li>
+						</ul>
+						<p>{{blog.desc}}</p>
+						<ul class="share-post">
+							<li><a class="facebook" href="{{blog.facebook}}"><i class="fa fa-facebook"></i></a></li>
+							<li><a class="twitter" href="{{blog.twitter}}"><i class="fa fa-twitter"></i></a></li>
+							<li><a class="google" href="{{blog.google}}"><i class="fa fa-google-plus"></i></a></li>
+							<li><a class="pinterest" href="{{blog.instagram}}"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+					</div>
+					{% endfor %}
+					<div class="pagination-box">
+						<ul class="page-list">
+							<li><a class="prev" href="#"><i class="fa fa-angle-left"></i>Пред</a></li>
+							<li><a class="active" href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a class="next" href="#">След <i class="fa fa-angle-right"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End blog section -->
+
+		<!-- footer 
+			================================================== -->
+		{% include 'include/footer.html' %}
+		<!-- End footer -->
+
+	</div>
+	<!-- End Container -->
+
+	{% endblock %}
